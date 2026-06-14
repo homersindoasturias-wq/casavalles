@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="Casa Los Valles">
+<meta name="apple-mobile-web-app-title" content="Casa Valles">
 <meta name="theme-color" content="#2E8B72">
-<title>Casa Los Valles</title>
+<title>Casa Valles</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
@@ -238,7 +238,7 @@ html,body{background:#FFFFFF;font-family:'Inter',sans-serif;color:#1A1A1A;height
 <body>
 <div class="app">
   <div class="header">
-    <div class="h-kicker">Reocín · Cantabria ·</div>
+    <div class="h-kicker">Reocín · Cantabria · Segunda residencia</div>
     <div class="h-title">Casa <em>Valles</em></div>
     <nav class="nav">
       <button class="nb active" onclick="showTab('inicio',this)"><i class="ti ti-home"></i>Inicio</button>
@@ -292,7 +292,7 @@ html,body{background:#FFFFFF;font-family:'Inter',sans-serif;color:#1A1A1A;height
       <div class="cita"><div class="cita-icon"><i class="ti ti-building-store"></i></div><div><div class="cita-name">Media Markt Santander</div><div class="cita-sub">Ver electrodomésticos</div><div class="cita-tag">Pendiente confirmar</div></div></div>
       <span class="sec-kicker" style="margin-top:4px;">Plazos críticos</span>
       <div class="plazo-item"><div><div class="pl-tag">Reforma</div><div class="pl-title">Presupuesto Villegas</div><div class="pl-body">Decidir o renegociar antes caducidad</div></div><div class="pl-dias amber">20<small>días</small></div></div>
-      <div class="plazo-item"><div><div class="pl-tag">Legal</div><div class="pl-title">Contrato préstamo hermanas</div><div class="pl-body">Antes de escritura · Ana pagó arras íntegras</div></div><div class="pl-dias amber">—<small>antes 18/07</small></div></div>
+
       <div class="plazo-item"><div><div class="pl-tag">Notaría</div><div class="pl-title">Escritura notarial</div><div class="pl-body">Vendedor cancela cargas previas</div></div><div class="pl-dias red">35<small>días</small></div></div>
       <div class="plazo-item"><div><div class="pl-tag">Fiscal · ATCAN</div><div class="pl-title">Modelo 600 préstamo hermanas</div><div class="pl-body">30 días hábiles tras escritura</div></div><div class="pl-dias sage">—<small>post-escritura</small></div></div>
     </div>
@@ -348,13 +348,12 @@ html,body{background:#FFFFFF;font-family:'Inter',sans-serif;color:#1A1A1A;height
     <!-- PAGOS -->
     <div id="tab-pagos" class="sec">
       <div class="pagos-hero">
-        <div class="ph-eyebrow">Balance entre hermanas · hoy</div>
-        <div class="ph-alert">Ana adelanta <strong>15.500 €</strong> sobre María.<br>Restitución antes de escritura 18/07/2026.</div>
+        <div class="ph-eyebrow">Pagos · Casa Valles</div>
         <div class="ph-grid">
-          <div class="ph-card"><div class="ph-card-label ana">Ana</div><div class="ph-num" id="total-ana">31.000 €</div><div class="ph-sub">pagado total</div></div>
-          <div class="ph-card"><div class="ph-card-label maria">María</div><div class="ph-num" id="total-maria">0 €</div><div class="ph-sub">pagado total</div></div>
+          <div class="ph-card"><div class="ph-card-label ana">Ana</div><div class="ph-num" id="total-ana">30.000 €</div><div class="ph-sub">pagado hasta hoy</div></div>
+          <div class="ph-card"><div class="ph-card-label maria">María</div><div class="ph-num" id="total-maria">1.000 €</div><div class="ph-sub">pagado hasta hoy</div></div>
         </div>
-        <div class="ph-cuenta"><div><div class="ph-cuenta-l">Cuenta común exclusiva</div><div style="font-size:9px;color:#555;margin-top:1px;">Pendiente de abrir</div></div><div class="ph-cuenta-s">— €</div></div>
+        <div class="ph-cuenta"><div><div class="ph-cuenta-l">Cuenta común · CaixaBank</div><div style="font-size:9px;color:#9DC49B;margin-top:1px;">Abierta · Saldo: 1.000 €</div></div><div class="ph-cuenta-s">1.000 €</div></div>
       </div>
 
       <div class="ptabs">
@@ -365,23 +364,89 @@ html,body{background:#FFFFFF;font-family:'Inter',sans-serif;color:#1A1A1A;height
       </div>
 
       <div id="psub-partidas" class="psub active">
-        <div class="tabla-header">
-          <div class="th">Concepto</div>
+
+        <div style="padding:14px 22px 10px;border-bottom:1px solid var(--border);">
+          <div style="font-size:8px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mist);margin-bottom:10px;">Precio total vivienda</div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F5F5F5;">
+            <span style="font-size:11px;color:var(--stone);">Precio escritura</span>
+            <span style="font-family:'Playfair Display',serif;font-size:14px;">310.000 €</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F5F5F5;">
+            <span style="font-size:11px;color:var(--stone);">− Señal (pagada)</span>
+            <span style="font-family:'Playfair Display',serif;font-size:14px;color:#2A9B82;">− 2.000 €</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F5F5F5;">
+            <span style="font-size:11px;color:var(--stone);">− Arras (pagadas)</span>
+            <span style="font-family:'Playfair Display',serif;font-size:14px;color:#2A9B82;">− 29.000 €</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid #1A1A1A;margin-top:4px;">
+            <span style="font-size:11px;font-weight:500;color:var(--ink);">Resto a pagar en escritura</span>
+            <span style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;">279.000 €</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
+            <div style="background:#F8F8F6;padding:10px;text-align:center;border:1px solid var(--border);">
+              <div style="font-size:8px;color:#9DC49B;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Ana</div>
+              <div style="font-family:'Playfair Display',serif;font-size:15px;color:#2A9B82;">139.500 €</div>
+              <div style="font-size:9px;color:var(--mist);margin-top:2px;">Fondos propios</div>
+            </div>
+            <div style="background:#F8F8F6;padding:10px;text-align:center;border:1px solid var(--border);">
+              <div style="font-size:8px;color:#B9AACC;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">María</div>
+              <div style="font-family:'Playfair Display',serif;font-size:15px;color:#8A7CA0;">139.500 €</div>
+              <div style="font-size:9px;color:var(--mist);margin-top:2px;">Hipoteca CaixaBank</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabla-header" style="margin-top:8px;">
+          <div class="th">Pago realizado</div>
           <div class="th right">Ana</div>
           <div class="th right">María</div>
           <div class="th right">Estado</div>
         </div>
+
+        <div class="tabla-row">
+          <div><div class="tr-concept">Señal compraventa</div><div class="tr-note">Cuenta Unicaja común · Pagada 50/50 · 1.000 € cada una</div></div>
+          <div class="tr-val ana">1.000 €</div>
+          <div class="tr-val maria">1.000 €</div>
+          <div><span class="tr-status ts-ok">Pagado</span></div>
+        </div>
+
+        <div class="tabla-row">
+          <div><div class="tr-concept">Arras compraventa</div><div class="tr-note">Ana, fondos propios · María debe restituir 14.500 €</div></div>
+          <div class="tr-val ana">30.000 €</div>
+          <div class="tr-val" style="color:var(--red);font-size:10px;font-family:'Inter',sans-serif;">debe<br>14.500 €</div>
+          <div><span class="tr-status ts-ok">Pagado</span></div>
+        </div>
+
+        <div class="tabla-row">
+          <div><div class="tr-concept">Aportación cuenta común</div><div class="tr-note">María · CaixaBank · Gastos tasación · 14/06/2026</div></div>
+          <div class="tr-val pend">—</div>
+          <div class="tr-val maria">1.000 €</div>
+          <div><span class="tr-status ts-ok">Pagado</span></div>
+        </div>
+
+        <div class="tabla-total">
+          <div class="tt-label">Total pagado</div>
+          <div class="tt-val ana">30.000 €</div>
+          <div class="tt-val" style="font-family:'Playfair Display',serif;font-size:14px;text-align:right;color:#8A7CA0;">2.000 €</div>
+          <div></div>
+        </div>
+
+
+
         <div id="tabla-pagos-body"></div>
         <div id="tabla-total-row"></div>
-        <div class="pad" style="padding-top:16px;padding-bottom:8px;"><button class="btn-ink" onclick="openModal()">+ Registrar pago</button></div>
+        <div class="pad" style="padding-top:16px;padding-bottom:8px;"><button class="btn-ink" onclick="openModal()">+ Registrar nuevo pago</button></div>
       </div>
 
       <div id="psub-compraventa" class="psub">
         <div class="cv-section"><div class="cv-title">Precio y financiación</div>
           <div class="cv-row"><span class="cv-key">Precio escritura</span><span class="cv-val">310.000 €</span></div>
-          <div class="cv-row"><span class="cv-key">Hipoteca CaixaBank</span><span class="cv-val">170.000 €</span></div>
-          <div class="cv-row"><span class="cv-key">Aportación Ana (efectivo)</span><span class="cv-val">155.000 €</span></div>
-          <div class="cv-row"><span class="cv-key">Arras pagadas</span><span class="cv-val">31.000 €</span></div>
+          <div class="cv-row"><span class="cv-key">− Señal pagada</span><span class="cv-val sage">− 2.000 €</span></div>
+          <div class="cv-row"><span class="cv-key">− Arras pagadas</span><span class="cv-val sage">− 29.000 €</span></div>
+          <div class="cv-row" style="border-top:1px solid var(--ink);margin-top:4px;padding-top:10px;"><span class="cv-key" style="font-weight:500;">Resto escritura</span><span class="cv-val" style="font-size:17px;">279.000 €</span></div>
+          <div class="cv-row"><span class="cv-key">Ana (fondos propios)</span><span class="cv-val">139.500 €</span></div>
+          <div class="cv-row"><span class="cv-key">María (hipoteca CaixaBank)</span><span class="cv-val">139.500 €</span></div>
         </div>
         <div class="cv-section"><div class="cv-title">Notaría</div>
           <div class="cv-row"><span class="cv-key">Escritura compraventa</span><span class="cv-val">~1.200 €</span></div>
@@ -515,7 +580,11 @@ document.getElementById('dias-escritura').textContent=diffD>0?diffD:'0';
 // ── PAGOS ──
 let pagos=JSON.parse(localStorage.getItem('clv_pagos')||'[]');
 if(pagos.length===0){
-  pagos=[{id:1,concepto:'Arras compraventa',importe:31000,quien:'Ana',categoria:'Compra',estado:'Pagado',nota:'Ana pagó la totalidad. María debe restituir 15.500€'}];
+  pagos=[
+    {id:1,concepto:'Señal compraventa',importe:2000,quien:'Ambas',categoria:'Compra',estado:'Pagado',nota:'Cuenta Unicaja común · Pagada 50/50. 1.000€ cada una.'},
+    {id:2,concepto:'Arras compraventa',importe:29000,quien:'Ana',categoria:'Compra',estado:'Pagado',nota:'Ana pagó íntegras. María debe restituir 14.500€ a Ana.'},
+    {id:3,concepto:'Aportación cuenta común CaixaBank',importe:1000,quien:'María',categoria:'Gastos hipoteca',estado:'Pagado',nota:'Gastos tasación hipoteca. 14/06/2026.'}
+  ];
   savePagos();
 }
 function savePagos(){localStorage.setItem('clv_pagos',JSON.stringify(pagos));}
