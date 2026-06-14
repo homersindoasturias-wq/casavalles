@@ -353,7 +353,7 @@ html,body{background:#FFFFFF;font-family:'Inter',sans-serif;color:#1A1A1A;height
           <div class="ph-card"><div class="ph-card-label ana">Ana</div><div class="ph-num" id="total-ana">30.000 €</div><div class="ph-sub">pagado hasta hoy</div></div>
           <div class="ph-card"><div class="ph-card-label maria">María</div><div class="ph-num" id="total-maria">1.000 €</div><div class="ph-sub">pagado hasta hoy</div></div>
         </div>
-        <div class="ph-cuenta"><div><div class="ph-cuenta-l">Cuenta común · CaixaBank</div><div style="font-size:9px;color:#9DC49B;margin-top:1px;">Abierta · Saldo: 1.000 €</div></div><div class="ph-cuenta-s">1.000 €</div></div>
+        <div class="ph-cuenta"><div><div class="ph-cuenta-l">Cuenta común · CaixaBank</div><div style="font-size:9px;color:#9DC49B;margin-top:1px;">Abierta · Depósito María: 1.000 €</div></div><div class="ph-cuenta-s">1.000 €</div></div>
       </div>
 
       <div class="ptabs">
@@ -426,9 +426,9 @@ html,body{background:#FFFFFF;font-family:'Inter',sans-serif;color:#1A1A1A;height
         </div>
 
         <div class="tabla-total">
-          <div class="tt-label">Total pagado</div>
+          <div class="tt-label">Total pagado a terceros</div>
           <div class="tt-val ana">30.000 €</div>
-          <div class="tt-val" style="font-family:'Playfair Display',serif;font-size:14px;text-align:right;color:#8A7CA0;">2.000 €</div>
+          <div class="tt-val" style="font-family:'Playfair Display',serif;font-size:14px;text-align:right;color:#8A7CA0;">1.000 €</div>
           <div></div>
         </div>
 
@@ -582,8 +582,7 @@ let pagos=JSON.parse(localStorage.getItem('clv_pagos')||'[]');
 if(pagos.length===0){
   pagos=[
     {id:1,concepto:'Señal compraventa',importe:2000,quien:'Ambas',categoria:'Compra',estado:'Pagado',nota:'Cuenta Unicaja común · Pagada 50/50. 1.000€ cada una.'},
-    {id:2,concepto:'Arras compraventa',importe:29000,quien:'Ana',categoria:'Compra',estado:'Pagado',nota:'Ana pagó íntegras. María debe restituir 14.500€ a Ana.'},
-    {id:3,concepto:'Aportación cuenta común CaixaBank',importe:1000,quien:'María',categoria:'Gastos hipoteca',estado:'Pagado',nota:'Gastos tasación hipoteca. 14/06/2026.'}
+    {id:2,concepto:'Arras compraventa',importe:29000,quien:'Ana',categoria:'Compra',estado:'Pagado',nota:'Ana pagó íntegras. María debe restituir 14.500€ a Ana.'}
   ];
   savePagos();
 }
