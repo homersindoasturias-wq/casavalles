@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Casa Los Valles">
+<meta name="theme-color" content="#2E8B72">
+<title>Casa Los Valles</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+:root{
+  --ink:#1A1A1A;--ink2:#2C2C2A;--stone:#6B6B65;--mist:#AEAEA8;
+  --border:#E8E8E4;--bg:#FFFFFF;--white:#FFFFFF;
+  --sage:#7A9478;--sage-pale:#EDF2ED;
+  --amber:#C4895A;--amber-pale:#FAF3EC;
+  --red:#B05555;--red-pale:#F9EEEE;--gold:#B8975A;
+  --ana:#7A9478;--maria:#8A7CA0;
+  --menta:#3DBFA0;--menta-dark:#2A9B82;--menta-pale:#E8F9F5;--menta-mid:#6DD4BC;
+  --menta-header:#2E8B72;--menta-header2:#3AA88C;
+}
+html,body{background:#FFFFFF;font-family:'Inter',sans-serif;color:#1A1A1A;height:100%;overscroll-behavior:none;}
+.app{max-width:430px;margin:0 auto;min-height:100vh;position:relative;}
+
+.header{background:linear-gradient(180deg,#2E8B72 0%,#3AA88C 100%);padding:24px 22px 0;position:sticky;top:0;z-index:20;}
+.h-kicker{font-size:8px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mist);margin-bottom:5px;}
+.h-title{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);margin-bottom:18px;}
+.h-title em{font-style:italic;color:var(--gold);}
+.nav{display:flex;border-top:1px solid rgba(255,255,255,0.08);overflow-x:auto;scrollbar-width:none;}
+.nav::-webkit-scrollbar{display:none;}
+.nb{flex:1;min-width:52px;padding:10px 2px 11px;border:none;background:none;font-family:'Inter',sans-serif;font-size:8px;font-weight:500;letter-spacing:0.09em;text-transform:uppercase;color:rgba(255,255,255,0.6);cursor:pointer;border-top:1.5px solid transparent;margin-top:-1px;display:flex;flex-direction:column;align-items:center;gap:3px;white-space:nowrap;}
+.nb i{font-size:17px;}
+.nb.active{color:var(--white);border-top-color:var(--gold);}
+
+.content{padding:0 0 100px;overflow-y:auto;}
+.sec{display:none;}
+.sec.active{display:block;}
+.pad{padding:0 22px;}
+
+.eyebrow{font-size:8px;letter-spacing:0.18em;text-transform:uppercase;color:var(--mist);font-weight:500;}
+.sec-kicker{font-size:8px;letter-spacing:0.16em;text-transform:uppercase;color:var(--mist);padding:18px 22px 10px;display:block;border-bottom:1px solid var(--border);}
+.rule{height:1px;background:var(--border);margin:0 22px;}
+.btn-ink{font-family:'Inter',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;border:none;background:#2A9B82;color:var(--white);padding:12px 24px;cursor:pointer;width:100%;margin-top:4px;}
+.btn-outline{font-family:'Inter',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--border);background:transparent;color:var(--stone);padding:8px 14px;cursor:pointer;margin-top:8px;display:inline-block;}
+
+/* INICIO */
+.hero{background:linear-gradient(160deg,#2E8B72 0%,#3AA88C 50%,#2E9B80 100%);padding:28px 22px 24px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.2) 0%,transparent 70%);}
+.hero-date{font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mist);margin-bottom:14px;}
+.hero-num{font-family:'Playfair Display',serif;font-size:68px;font-weight:700;color:var(--white);line-height:1;letter-spacing:-0.02em;}
+.hero-num sup{font-size:18px;color:var(--gold);vertical-align:super;}
+.hero-label{font-size:11px;color:rgba(255,255,255,0.45);margin-top:3px;letter-spacing:0.06em;}
+.hero-sub{margin-top:20px;display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;}
+.hs{text-align:center;padding:0 6px;}
+.hs:not(:last-child){border-right:1px solid rgba(255,255,255,0.1);}
+.hs-n{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);}
+.hs-n.red{color:#E07070;}
+.hs-n.sage{color:#9DC49B;}
+.hs-l{font-size:7.5px;color:var(--mist);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;}
+
+.alert-item{display:grid;grid-template-columns:3px 1fr auto;gap:0 13px;align-items:start;padding:16px 22px;border-bottom:1px solid var(--border);}
+.al-bar{border-radius:2px;align-self:stretch;min-height:36px;}
+.bar-red{background:var(--red);}
+.bar-amber{background:var(--amber);}
+.bar-sage{background:var(--sage);}
+.al-tag{font-size:7.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mist);margin-bottom:3px;}
+.al-title{font-size:13px;font-weight:500;color:var(--ink);line-height:1.35;margin-bottom:2px;}
+.al-body{font-size:11px;color:var(--stone);line-height:1.5;}
+.al-badge{font-size:7.5px;font-weight:500;letter-spacing:0.06em;padding:3px 9px;white-space:nowrap;align-self:start;margin-top:2px;}
+.bd-red{background:var(--red-pale);color:var(--red);}
+.bd-amber{background:var(--amber-pale);color:var(--amber);}
+.bd-sage{background:var(--sage-pale);color:var(--sage);}
+
+/* AGENDA */
+.ag-hero{background:linear-gradient(160deg,#3AA88C 0%,#2E8B72 100%);padding:24px 22px 20px;}
+.ag-big{font-family:'Playfair Display',serif;font-size:44px;font-weight:700;color:var(--white);line-height:1;}
+.ag-sub{font-size:10px;color:var(--mist);letter-spacing:0.1em;text-transform:uppercase;margin-top:5px;}
+.cita{padding:16px 22px;border-bottom:1px solid var(--border);display:flex;gap:13px;}
+.cita-icon{width:40px;height:40px;flex-shrink:0;background:#2E8B72;display:flex;align-items:center;justify-content:center;}
+.cita-icon i{font-size:19px;color:var(--gold);}
+.cita-name{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px;}
+.cita-sub{font-size:11px;color:var(--stone);line-height:1.5;}
+.cita-tag{font-size:7.5px;letter-spacing:0.08em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--border);color:var(--mist);display:inline-block;margin-top:5px;}
+.cita-tag.urgent{border-color:var(--red);color:var(--red);}
+.plazo-item{padding:14px 22px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+.pl-tag{font-size:7.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mist);margin-bottom:3px;}
+.pl-title{font-size:13px;font-weight:500;color:var(--ink);}
+.pl-body{font-size:11px;color:var(--stone);margin-top:2px;}
+.pl-dias{font-family:'Playfair Display',serif;font-size:18px;color:var(--ink);text-align:right;flex-shrink:0;}
+.pl-dias small{display:block;font-family:'Inter',sans-serif;font-size:7.5px;color:var(--mist);letter-spacing:0.08em;text-transform:uppercase;}
+.pl-dias.red{color:var(--red);}
+.pl-dias.amber{color:var(--amber);}
+.pl-dias.sage{color:var(--sage);}
+
+/* REFORMA */
+.ref-hero{padding:26px 22px 22px;background:linear-gradient(135deg,#2E8B72 0%,#3AA88C 50%,#2E9B80 100%);position:relative;overflow:hidden;}
+.ref-hero::after{content:'32';font-family:'Playfair Display',serif;font-size:110px;font-weight:700;color:rgba(255,255,255,0.04);position:absolute;right:-5px;bottom:-15px;line-height:1;pointer-events:none;}
+.rp-bar-wrap{margin-top:16px;}
+.rp-label{display:flex;justify-content:space-between;margin-bottom:5px;}
+.rp-label span{font-size:8.5px;letter-spacing:0.09em;text-transform:uppercase;color:var(--mist);}
+.rp-track{height:2px;background:rgba(255,255,255,0.1);}
+.rp-fill{height:2px;}
+.area-header{padding:16px 22px 8px;display:flex;justify-content:space-between;align-items:baseline;}
+.area-name{font-family:'Playfair Display',serif;font-size:18px;color:var(--ink);font-style:italic;}
+.area-count{font-size:8.5px;color:var(--mist);letter-spacing:0.09em;text-transform:uppercase;}
+.partida{padding:11px 22px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:11px;}
+.p-num{font-family:'Playfair Display',serif;font-size:12px;color:var(--mist);min-width:22px;padding-top:1px;}
+.p-body{flex:1;}
+.p-title{font-size:12px;font-weight:500;color:var(--ink);line-height:1.35;}
+.p-note{font-size:10px;color:var(--stone);margin-top:2px;}
+.p-pill{font-size:7.5px;letter-spacing:0.07em;text-transform:uppercase;padding:2px 8px;flex-shrink:0;margin-top:2px;border:1px solid;}
+.pp-pend{border-color:var(--border);color:var(--mist);}
+.pp-ok{border-color:var(--sage);color:var(--sage);}
+.pp-block{border-color:var(--red);color:var(--red);}
+.pp-active{border-color:var(--amber);color:var(--amber);}
+
+/* CONTACTOS */
+.contact-item{padding:16px 22px;border-bottom:1px solid var(--border);display:flex;gap:13px;}
+.c-mono{width:42px;height:42px;flex-shrink:0;background:#2E8B72;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:13px;color:var(--gold);}
+.c-name{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:2px;}
+.c-tipo{font-size:9px;color:var(--mist);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px;}
+.c-info{font-size:11px;color:var(--stone);line-height:1.5;}
+.c-status{font-size:7.5px;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border:1px solid;flex-shrink:0;align-self:start;}
+.cs-pend{border-color:var(--border);color:var(--mist);}
+.cs-ok{border-color:var(--sage);color:var(--sage);}
+.cs-urgent{border-color:var(--red);color:var(--red);}
+.cs-active{border-color:var(--amber);color:var(--amber);}
+
+/* PAGOS */
+.pagos-hero{background:linear-gradient(160deg,#2E8B72 0%,#3AA88C 60%,#2E9B80 100%);padding:26px 22px 22px;position:relative;overflow:hidden;}
+.pagos-hero::before{content:'';position:absolute;bottom:-40px;left:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.15) 0%,transparent 70%);}
+.ph-eyebrow{font-size:8px;letter-spacing:0.18em;text-transform:uppercase;color:var(--mist);margin-bottom:8px;}
+.ph-alert{font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:rgba(255,255,255,0.8);line-height:1.5;margin-bottom:18px;border-left:2px solid var(--gold);padding-left:13px;}
+.ph-alert strong{color:var(--gold);font-style:normal;}
+.ph-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.ph-card{background:rgba(255,255,255,0.12);padding:13px;border:1px solid rgba(255,255,255,0.15);}
+.ph-card-label{font-size:8px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;}
+.ph-card-label.ana{color:#9DC49B;}
+.ph-card-label.maria{color:#B9AACC;}
+.ph-num{font-family:'Playfair Display',serif;font-size:22px;color:var(--white);}
+.ph-sub{font-size:9px;color:var(--mist);margin-top:2px;}
+.ph-cuenta{border:1px solid rgba(255,255,255,0.1);padding:11px 13px;display:flex;justify-content:space-between;align-items:center;}
+.ph-cuenta-l{font-size:8px;letter-spacing:0.09em;text-transform:uppercase;color:var(--mist);}
+.ph-cuenta-s{font-family:'Playfair Display',serif;font-size:17px;color:var(--white);}
+
+.ptabs{display:flex;background:var(--white);border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;}
+.ptabs::-webkit-scrollbar{display:none;}
+.ptab{flex:1;min-width:80px;padding:11px 4px;border:none;background:none;font-family:'Inter',sans-serif;font-size:8px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--mist);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;}
+.ptab.active{color:var(--ink);border-bottom-color:var(--ink);}
+.psub{display:none;}
+.psub.active{display:block;}
+
+.tabla-header{display:grid;grid-template-columns:1fr 72px 72px 60px;gap:4px;padding:9px 22px;background:#F0EFEC;border-bottom:1px solid var(--border);}
+.th{font-size:7.5px;font-weight:500;letter-spacing:0.09em;text-transform:uppercase;color:var(--mist);}
+.th.right{text-align:right;}
+.tabla-row{display:grid;grid-template-columns:1fr 72px 72px 60px;gap:4px;padding:12px 22px;border-bottom:1px solid var(--border);align-items:start;}
+.tr-concept{font-size:11px;font-weight:500;color:var(--ink);line-height:1.35;}
+.tr-note{font-size:9px;color:var(--stone);margin-top:2px;}
+.tr-val{font-family:'Playfair Display',serif;font-size:13px;text-align:right;}
+.tr-val.ana{color:var(--ana);}
+.tr-val.maria{color:var(--maria);}
+.tr-val.pend{color:var(--mist);font-size:10px;font-family:'Inter',sans-serif;}
+.tr-status{font-size:7px;letter-spacing:0.07em;text-transform:uppercase;padding:2px 5px;border:1px solid;text-align:center;margin-top:2px;}
+.ts-ok{border-color:var(--sage);color:var(--sage);}
+.ts-pend{border-color:var(--border);color:var(--mist);}
+.ts-urgent{border-color:var(--red);color:var(--red);}
+.ts-amber{border-color:var(--amber);color:var(--amber);}
+.tabla-total{display:grid;grid-template-columns:1fr 72px 72px 60px;gap:4px;padding:12px 22px;background:var(--menta-pale);border-top:2px solid var(--menta-dark);}
+.tt-label{font-size:10px;font-weight:500;color:var(--ink);}
+.tt-val{font-family:'Playfair Display',serif;font-size:14px;text-align:right;}
+.tt-val.ana{color:var(--ana);}
+.tt-val.maria{color:var(--red);}
+
+.cv-section{padding:16px 22px;border-bottom:1px solid var(--border);}
+.cv-title{font-family:'Playfair Display',serif;font-size:15px;color:var(--ink);margin-bottom:10px;}
+.cv-row{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px solid #F0F0EC;}
+.cv-key{font-size:11px;color:var(--stone);}
+.cv-val{font-family:'Playfair Display',serif;font-size:14px;color:var(--ink);}
+.cv-val.sage{color:var(--sage);}
+.cv-val.amber{color:var(--amber);}
+.cv-val.red{color:var(--red);}
+.cv-val.mist{color:var(--mist);font-family:'Inter',sans-serif;font-size:11px;}
+.dos-col{display:flex;gap:8px;margin-top:10px;}
+.dos-col-item{flex:1;background:#F8F8F6;padding:9px 10px;text-align:center;border:1px solid var(--border);}
+.dos-col-l{font-size:8px;color:var(--mist);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:3px;}
+.dos-col-v{font-family:'Playfair Display',serif;font-size:16px;}
+.dos-col-v.ana{color:var(--ana);}
+.dos-col-v.maria{color:var(--maria);}
+
+.hip-hero{background:linear-gradient(135deg,#2E8B72 0%,#3AA88C 100%);padding:22px;}
+.hip-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;}
+.hip-card{background:rgba(255,255,255,0.12);padding:12px;border:1px solid rgba(255,255,255,0.15);}
+.hip-card-l{font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mist);margin-bottom:4px;}
+.hip-card-v{font-family:'Playfair Display',serif;font-size:19px;color:var(--white);}
+.hip-card-v.gold{color:var(--gold);}
+.cuota-hero{padding:20px 22px;background:linear-gradient(135deg,#3AA88C 0%,#2E8B72 100%);text-align:center;}
+.cuota-label{font-size:8px;letter-spacing:0.16em;text-transform:uppercase;color:var(--mist);margin-bottom:6px;}
+.cuota-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:var(--white);}
+.cuota-num span{font-size:16px;color:var(--gold);}
+.cuota-sub{font-size:10px;color:var(--mist);margin-top:4px;}
+
+.amort-header{display:grid;grid-template-columns:36px 1fr 1fr 1fr 1fr;gap:2px;padding:9px 16px;background:#F0EFEC;border-bottom:1px solid var(--border);}
+.amh{font-size:7px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:var(--mist);}
+.amh.right{text-align:right;}
+.amort-row{display:grid;grid-template-columns:36px 1fr 1fr 1fr 1fr;gap:2px;padding:9px 16px;border-bottom:1px solid var(--border);}
+.amort-row:nth-child(even){background:#FAFAF8;}
+.am-n{font-size:10px;color:var(--mist);}
+.am-v{font-size:10px;color:var(--ink);text-align:right;}
+.am-v.interest{color:var(--amber);}
+.am-v.capital{color:var(--sage);}
+.am-v.pending{color:var(--stone);}
+
+/* Modal añadir pago */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:100;align-items:flex-end;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:var(--white);width:100%;max-width:430px;margin:0 auto;border-radius:16px 16px 0 0;padding:24px 22px 40px;}
+.modal-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--ink);margin-bottom:18px;}
+.field{margin-bottom:14px;}
+.field label{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mist);display:block;margin-bottom:5px;}
+.field input, .field select{width:100%;padding:10px 12px;border:1px solid var(--border);background:var(--bg);font-family:'Inter',sans-serif;font-size:13px;color:var(--ink);border-radius:4px;}
+.modal-btns{display:flex;gap:8px;margin-top:18px;}
+.btn-cancel{flex:1;padding:12px;border:1px solid var(--border);background:transparent;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--stone);cursor:pointer;}
+.btn-save{flex:2;padding:12px;border:none;background:#2A9B82;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);cursor:pointer;}
+
+.fab{position:fixed;bottom:22px;right:16px;width:50px;height:50px;background:#2A9B82;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,0.25);font-size:24px;color:var(--gold);z-index:50;border-radius:0;}
+
+.install-banner{display:none;background:linear-gradient(135deg,#2E8B72,#3AA88C);padding:12px 22px;border-bottom:1px solid rgba(255,255,255,0.1);align-items:center;gap:10px;}
+.install-banner.show{display:flex;}
+.install-text{font-size:11px;color:rgba(255,255,255,0.7);flex:1;line-height:1.4;}
+.install-btn{font-family:'Inter',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--gold);background:transparent;color:var(--gold);padding:7px 12px;cursor:pointer;white-space:nowrap;}
+</style>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+</head>
+<body>
+<div class="app">
+  <div class="header">
+    <div class="h-kicker">Reocín · Cantabria · Segunda residencia</div>
+    <div class="h-title">Casa <em>Los Valles</em></div>
+    <nav class="nav">
+      <button class="nb active" onclick="showTab('inicio',this)"><i class="ti ti-home"></i>Inicio</button>
+      <button class="nb" onclick="showTab('agenda',this)"><i class="ti ti-calendar-event"></i>Agenda</button>
+      <button class="nb" onclick="showTab('reforma',this)"><i class="ti ti-tool"></i>Reforma</button>
+      <button class="nb" onclick="showTab('contactos',this)"><i class="ti ti-users"></i>Contactos</button>
+      <button class="nb" onclick="showTab('pagos',this)"><i class="ti ti-coin"></i>Pagos</button>
+    </nav>
+  </div>
+
+  <div id="install-banner" class="install-banner">
+    <div class="install-text">Instala esta app en tu pantalla de inicio para acceso rápido</div>
+    <button class="install-btn" id="install-btn">Instalar</button>
+    <button onclick="document.getElementById('install-banner').classList.remove('show')" style="background:none;border:none;color:var(--mist);font-size:18px;cursor:pointer;">×</button>
+  </div>
+
+  <div class="content">
+
+    <!-- INICIO -->
+    <div id="tab-inicio" class="sec active">
+      <div class="hero">
+        <div class="hero-date" id="fecha-hoy"></div>
+        <div class="hero-num">4<sup>!</sup></div>
+        <div class="hero-label">alertas requieren atención hoy</div>
+        <div class="hero-sub">
+          <div class="hs"><div class="hs-n red" id="dias-escritura">35</div><div class="hs-l">días escritura</div></div>
+          <div class="hs"><div class="hs-n" id="num-presup">2</div><div class="hs-l">presupuestos</div></div>
+          <div class="hs"><div class="hs-n sage">862</div><div class="hs-l">€/mes hipoteca</div></div>
+        </div>
+      </div>
+      <div class="alert-item"><div class="al-bar bar-red"></div><div><div class="al-tag">Urgente · Esta semana</div><div class="al-title">4 citas por confirmar el sábado 20</div><div class="al-body">Inmobiliaria, Hermanos Villegas, Openblind y Media Markt. Ana gestiona las tres primeras.</div></div><div class="al-badge bd-red">7 días</div></div>
+      <div class="alert-item"><div class="al-bar bar-red"></div><div><div class="al-tag">Urgente · Openblind</div><div class="al-title">Presupuesto mosquiteras caducado el 16/06</div><div class="al-body">Confirmar vigencia con Emiliano Gómez Alberdi antes del sábado.</div></div><div class="al-badge bd-red">Hoy</div></div>
+      <div class="alert-item"><div class="al-bar bar-red"></div><div><div class="al-tag">Urgente · Compra</div><div class="al-title">Confirmar cancelación de cargas del vendedor</div><div class="al-body">Hipoteca, embargo y deuda de comunidad. Escritura 18/07.</div></div><div class="al-badge bd-red">35 días</div></div>
+      <div class="alert-item"><div class="al-bar bar-amber"></div><div><div class="al-tag">Atención · Reforma</div><div class="al-title">Presupuesto Villegas caduca el 3/07</div><div class="al-body">3.723,04 € + IVA. Pintura y acuchillado. Decidir antes de esa fecha.</div></div><div class="al-badge bd-amber">20 días</div></div>
+      <div class="alert-item"><div class="al-bar bar-amber"></div><div><div class="al-tag">Hipoteca · CaixaBank</div><div class="al-title">Préstamo autorizado — pendiente tasación</div><div class="al-body">170.000 € · 20 años · 2,15% fijo · 862,84 €/mes. Tasación pendiente.</div></div><div class="al-badge bd-amber">Pendiente</div></div>
+      <div class="alert-item"><div class="al-bar bar-sage"></div><div><div class="al-tag">Legal · Bloqueante</div><div class="al-title">Consulta PGOU cerramiento acristalado</div><div class="al-body">Sin viabilidad urbanística, no comprometer presupuesto en esa partida.</div></div><div class="al-badge bd-sage">Bloqueante</div></div>
+      <div class="pad" style="padding-top:20px;padding-bottom:8px;"><button class="btn-ink" onclick="window.open('https://claude.ai','_blank')">Abrir asistente Claude ↗</button></div>
+    </div>
+
+    <!-- AGENDA -->
+    <div id="tab-agenda" class="sec">
+      <div class="ag-hero">
+        <div class="eyebrow" style="color:var(--mist);">Próxima fecha clave</div>
+        <div class="ag-big">20</div>
+        <div class="ag-sub">Junio 2026 · Sábado · 4 citas</div>
+      </div>
+      <span class="sec-kicker">Citas sábado 20 · Ana gestiona las tres primeras</span>
+      <div class="cita"><div class="cita-icon"><i class="ti ti-building-estate"></i></div><div><div class="cita-name">Luis Félix · Casa Santander Inmobiliaria</div><div class="cita-sub">Visita vivienda · Reocín · Ana gestiona</div><div class="cita-tag">Pendiente confirmar</div></div></div>
+      <div class="cita"><div class="cita-icon"><i class="ti ti-paint"></i></div><div><div class="cita-name">Hermanos Villegas Landeras</div><div class="cita-sub">Empresa de reformas · pintura y lijado · 942-883597</div><div class="cita-tag">Pendiente confirmar</div></div></div>
+      <div class="cita"><div class="cita-icon" style="background:var(--red);"><i class="ti ti-window" style="color:white;"></i></div><div><div class="cita-name">Openblind · Emiliano Gómez</div><div class="cita-sub">Mosquiteras · presupuesto caducado 16/06</div><div class="cita-tag urgent">Verificar primero</div></div></div>
+      <div class="cita"><div class="cita-icon"><i class="ti ti-building-store"></i></div><div><div class="cita-name">Media Markt Santander</div><div class="cita-sub">Ver electrodomésticos</div><div class="cita-tag">Pendiente confirmar</div></div></div>
+      <span class="sec-kicker" style="margin-top:4px;">Plazos críticos</span>
+      <div class="plazo-item"><div><div class="pl-tag">Reforma</div><div class="pl-title">Presupuesto Villegas</div><div class="pl-body">Decidir o renegociar antes caducidad</div></div><div class="pl-dias amber">20<small>días</small></div></div>
+      <div class="plazo-item"><div><div class="pl-tag">Legal</div><div class="pl-title">Contrato préstamo hermanas</div><div class="pl-body">Antes de escritura · Ana pagó arras íntegras</div></div><div class="pl-dias amber">—<small>antes 18/07</small></div></div>
+      <div class="plazo-item"><div><div class="pl-tag">Notaría</div><div class="pl-title">Escritura notarial</div><div class="pl-body">Vendedor cancela cargas previas</div></div><div class="pl-dias red">35<small>días</small></div></div>
+      <div class="plazo-item"><div><div class="pl-tag">Fiscal · ATCAN</div><div class="pl-title">Modelo 600 préstamo hermanas</div><div class="pl-body">30 días hábiles tras escritura</div></div><div class="pl-dias sage">—<small>post-escritura</small></div></div>
+    </div>
+
+    <!-- REFORMA -->
+    <div id="tab-reforma" class="sec">
+      <div class="ref-hero">
+        <div class="eyebrow" style="color:var(--mist);">Reforma integral · 2026</div>
+        <div style="font-family:'Playfair Display',serif;font-size:26px;color:var(--white);margin-top:8px;">32 <span style="font-size:13px;font-family:'Inter',sans-serif;color:var(--mist);letter-spacing:0.08em;text-transform:uppercase;">actuaciones</span></div>
+        <div class="rp-bar-wrap"><div class="rp-label"><span>Presupuestado</span><span style="color:var(--gold);">2 / 32</span></div><div class="rp-track"><div class="rp-fill" style="width:6%;background:var(--gold);"></div></div></div>
+        <div class="rp-bar-wrap" style="margin-top:8px;"><div class="rp-label"><span style="color:#E07070;">Bloqueado</span><span style="color:#E07070;">3 partidas</span></div><div class="rp-track"><div class="rp-fill" style="width:9%;background:var(--red);"></div></div></div>
+      </div>
+      <div class="area-header"><span class="area-name">Interior</span><span class="area-count">6 partidas</span></div>
+      <div class="partida"><span class="p-num">01</span><div class="p-body"><div class="p-title">Apertura cocina-salón</div><div class="p-note">Verificar muro estructural primero</div></div><span class="p-pill pp-pend">Pendiente</span></div>
+      <div class="partida"><span class="p-num">02–03</span><div class="p-body"><div class="p-title">Reforma cocina + fontanería</div></div><span class="p-pill pp-pend">Pendiente</span></div>
+      <div class="partida"><span class="p-num">04–05</span><div class="p-body"><div class="p-title">Suelos planta baja y primera</div></div><span class="p-pill pp-pend">Pendiente</span></div>
+      <div class="partida"><span class="p-num">06–08</span><div class="p-body"><div class="p-title">Aseo PB + baños planta primera</div></div><span class="p-pill pp-pend">Pendiente</span></div>
+      <div class="partida"><span class="p-num">09–12</span><div class="p-body"><div class="p-title">Pintura + lacado + escalera</div><div class="p-note">Villegas 3.723€+IVA · caduca 3/07</div></div><span class="p-pill pp-active">Presup.</span></div>
+      <div class="partida"><span class="p-num">13</span><div class="p-body"><div class="p-title">Electricidad general</div><div class="p-note">Verificar capacidad infraestructura</div></div><span class="p-pill pp-pend">Pendiente</span></div>
+      <div class="rule"></div>
+      <div class="area-header"><span class="area-name">Climatización</span><span class="area-count">6 partidas</span></div>
+      <div class="partida"><span class="p-num">14</span><div class="p-body"><div class="p-title">Sistema calefacción → propano</div><div class="p-note">Red comunitaria · Ingualva</div></div><span class="p-pill pp-pend">Pendiente</span></div>
+      <div class="partida"><span class="p-num">15–16</span><div class="p-body"><div class="p-title">Splits salón + dormitorio principal</div></div><span class="p-pill pp-pend">Pendiente</span></div>
+      <div class="partida"><span class="p-num">17</span><div class="p-body"><div class="p-title">Ventiladores techo dormitorios</div></div><span class="p-pill pp-pend">Pendiente</span></div>
+      <div class="partida"><span class="p-num">18–19</span><div class="p-body"><div class="p-title">Mosquiteras · 11 huecos</div><div class="p-note">Openblind · presup. caducado · verificar</div></div><span class="p-pill pp-block">Verificar</span></div>
+      <div class="rule"></div>
+      <div class="area-header"><span class="area-name">Exterior</span><span class="area-count">7 partidas</span></div>
+      <div class="partida"><span class="p-num">20–21</span><div class="p-body"><div class="p-title">Cerramiento acristalado</div><div class="p-note">Pendiente viabilidad PGOU Reocín</div></div><span class="p-pill pp-block">Bloqueado</span></div>
+      <div class="partida"><span class="p-num">22–26</span><div class="p-body"><div class="p-title">Terraza · jardín · garaje · fachada</div></div><span class="p-pill pp-pend">Pendiente</span></div>
+      <div class="rule"></div>
+      <div class="area-header"><span class="area-name">Eficiencia energética</span><span class="area-count">6 partidas</span></div>
+      <div class="partida"><span class="p-num">27–31</span><div class="p-body"><div class="p-title">Aislamiento integral</div><div class="p-note">Cubierta + fachadas insuflado + bajo pavimento</div></div><span class="p-pill pp-pend">Pendiente</span></div>
+      <div class="partida"><span class="p-num">32</span><div class="p-body"><div class="p-title">Revisión cerramiento acristalado</div></div><span class="p-pill pp-block">Bloqueado</span></div>
+    </div>
+
+    <!-- CONTACTOS -->
+    <div id="tab-contactos" class="sec">
+      <div style="padding:22px 22px 16px;border-bottom:2px solid var(--menta-dark);">
+        <div class="eyebrow">Proveedores y gestores</div>
+        <div style="font-family:'Playfair Display',serif;font-size:24px;margin-top:6px;">1ª ronda <em style="font-style:italic;color:var(--amber);">activa</em></div>
+        <div style="font-size:11px;color:var(--stone);margin-top:4px;">9 contactos prioritarios · 2 presupuestos recibidos</div>
+      </div>
+      <div class="contact-item"><div class="c-mono">HV</div><div style="flex:1"><div class="c-name">Hermanos Villegas Landeras</div><div class="c-tipo">Empresa de reformas principal</div><div class="c-info">942-883597 · hermanos@hermanosvillegas.com<br>Cita sáb. 20/06 · Ana gestiona</div></div><div class="c-status cs-active">Presup.</div></div>
+      <div class="contact-item"><div class="c-mono" style="background:var(--red-pale);color:var(--red);">OB</div><div style="flex:1"><div class="c-name">Openblind · Emiliano Gómez</div><div class="c-tipo">Mosquiteras · persianas</div><div class="c-info">Presup. nº 828 caducado 16/06<br>Cita sáb. 20/06 · Ana gestiona</div></div><div class="c-status cs-urgent">Verificar</div></div>
+      <div class="contact-item"><div class="c-mono">LF</div><div style="flex:1"><div class="c-name">Luis Félix · Casa Santander</div><div class="c-tipo">Inmobiliaria</div><div class="c-info">Visita sáb. 20/06 · Ana gestiona</div></div><div class="c-status cs-pend">Pendiente</div></div>
+      <div class="contact-item"><div class="c-mono">AVR</div><div style="flex:1"><div class="c-name">AVR Arquitectos</div><div class="c-tipo">Arquitectura · licencias · PGOU</div><div class="c-info">644 70 33 00 · info@avrarquitectos.com</div></div><div class="c-status cs-pend">Pendiente</div></div>
+      <div class="contact-item"><div class="c-mono">IG</div><div style="flex:1"><div class="c-name">Ingualva</div><div class="c-tipo">Instalaciones · propano</div><div class="c-info">942 89 12 97 · info@ingualva.com</div></div><div class="c-status cs-pend">Pendiente</div></div>
+      <div class="contact-item"><div class="c-mono">AC</div><div style="flex:1"><div class="c-name">Abel Cruz</div><div class="c-tipo">Constructor · ref. Luis Seguros</div><div class="c-info">609 45 87 31</div></div><div class="c-status cs-pend">Pendiente</div></div>
+      <div class="contact-item"><div class="c-mono">+4</div><div style="flex:1"><div class="c-name">Selbor · I-Forma · Cintu · Lastra</div><div class="c-tipo">Constructoras · 1ª ronda</div><div class="c-info">4 contactos pendientes de primera llamada</div></div><div class="c-status cs-pend">Pendiente</div></div>
+      <div class="contact-item"><div class="c-mono">AB</div><div style="flex:1"><div class="c-name">Alicia Bravo Acedos</div><div class="c-tipo">CaixaBank · Centro Hipotecario</div><div class="c-info">Solicitud nº 196401000548408<br>Préstamo autorizado · pendiente tasación</div></div><div class="c-status cs-ok">Activo</div></div>
+    </div>
+
+    <!-- PAGOS -->
+    <div id="tab-pagos" class="sec">
+      <div class="pagos-hero">
+        <div class="ph-eyebrow">Balance entre hermanas · hoy</div>
+        <div class="ph-alert">Ana adelanta <strong>15.500 €</strong> sobre María.<br>Restitución antes de escritura 18/07/2026.</div>
+        <div class="ph-grid">
+          <div class="ph-card"><div class="ph-card-label ana">Ana</div><div class="ph-num" id="total-ana">31.000 €</div><div class="ph-sub">pagado total</div></div>
+          <div class="ph-card"><div class="ph-card-label maria">María</div><div class="ph-num" id="total-maria">0 €</div><div class="ph-sub">pagado total</div></div>
+        </div>
+        <div class="ph-cuenta"><div><div class="ph-cuenta-l">Cuenta común exclusiva</div><div style="font-size:9px;color:#555;margin-top:1px;">Pendiente de abrir</div></div><div class="ph-cuenta-s">— €</div></div>
+      </div>
+
+      <div class="ptabs">
+        <button class="ptab active" onclick="showPsub('partidas',this)">Partidas</button>
+        <button class="ptab" onclick="showPsub('compraventa',this)">Compraventa</button>
+        <button class="ptab" onclick="showPsub('hipoteca',this)">Hipoteca</button>
+        <button class="ptab" onclick="showPsub('amortizacion',this)">Amortización</button>
+      </div>
+
+      <div id="psub-partidas" class="psub active">
+        <div class="tabla-header">
+          <div class="th">Concepto</div>
+          <div class="th right">Ana</div>
+          <div class="th right">María</div>
+          <div class="th right">Estado</div>
+        </div>
+        <div id="tabla-pagos-body"></div>
+        <div id="tabla-total-row"></div>
+        <div class="pad" style="padding-top:16px;padding-bottom:8px;"><button class="btn-ink" onclick="openModal()">+ Registrar pago</button></div>
+      </div>
+
+      <div id="psub-compraventa" class="psub">
+        <div class="cv-section"><div class="cv-title">Precio y financiación</div>
+          <div class="cv-row"><span class="cv-key">Precio escritura</span><span class="cv-val">310.000 €</span></div>
+          <div class="cv-row"><span class="cv-key">Hipoteca CaixaBank</span><span class="cv-val">170.000 €</span></div>
+          <div class="cv-row"><span class="cv-key">Aportación Ana (efectivo)</span><span class="cv-val">155.000 €</span></div>
+          <div class="cv-row"><span class="cv-key">Arras pagadas</span><span class="cv-val">31.000 €</span></div>
+        </div>
+        <div class="cv-section"><div class="cv-title">Notaría</div>
+          <div class="cv-row"><span class="cv-key">Escritura compraventa</span><span class="cv-val">~1.200 €</span></div>
+          <div class="cv-row"><span class="cv-key">Escritura hipoteca</span><span class="cv-val">~800 €</span></div>
+          <div class="cv-row" style="border-top:1px solid var(--ink);margin-top:4px;padding-top:10px;"><span class="cv-key" style="font-weight:500;">Subtotal</span><span class="cv-val amber">~2.000 €</span></div>
+          <div class="dos-col"><div class="dos-col-item"><div class="dos-col-l">Ana</div><div class="dos-col-v ana">~1.000 €</div></div><div class="dos-col-item"><div class="dos-col-l">María</div><div class="dos-col-v maria">~1.000 €</div></div></div>
+        </div>
+        <div class="cv-section"><div class="cv-title">Registro de la Propiedad</div>
+          <div class="cv-row"><span class="cv-key">Inscripción compraventa</span><span class="cv-val">~600 €</span></div>
+          <div class="cv-row"><span class="cv-key">Inscripción hipoteca</span><span class="cv-val">~400 €</span></div>
+          <div class="cv-row" style="border-top:1px solid var(--ink);margin-top:4px;padding-top:10px;"><span class="cv-key" style="font-weight:500;">Subtotal</span><span class="cv-val amber">~1.000 €</span></div>
+          <div class="dos-col"><div class="dos-col-item"><div class="dos-col-l">Ana</div><div class="dos-col-v ana">~500 €</div></div><div class="dos-col-item"><div class="dos-col-l">María</div><div class="dos-col-v maria">~500 €</div></div></div>
+        </div>
+        <div class="cv-section"><div class="cv-title">Impuestos</div>
+          <div class="cv-row"><span class="cv-key">ITP hasta 300.000€ (9%)</span><span class="cv-val">27.000 €</span></div>
+          <div class="cv-row"><span class="cv-key">ITP exceso 10.000€ (10%)</span><span class="cv-val">1.000 €</span></div>
+          <div class="cv-row"><span class="cv-key">AJD hipoteca (1% s/170.000€)</span><span class="cv-val">1.700 €</span></div>
+          <div class="cv-row" style="border-top:1px solid var(--ink);margin-top:4px;padding-top:10px;"><span class="cv-key" style="font-weight:500;">Subtotal impuestos</span><span class="cv-val red">29.700 €</span></div>
+          <div class="dos-col"><div class="dos-col-item"><div class="dos-col-l">Ana · ITP</div><div class="dos-col-v ana">14.000 €</div></div><div class="dos-col-item"><div class="dos-col-l">María · ITP+AJD</div><div class="dos-col-v maria">15.700 €</div></div></div>
+        </div>
+        <div class="cv-section" style="background:#F0EFEC;"><div class="cv-title">Total gastos compraventa</div>
+          <div class="cv-row"><span class="cv-key">Notaría + Registro + Impuestos</span><span class="cv-val sage">~32.700 €</span></div>
+          <div class="dos-col"><div class="dos-col-item"><div class="dos-col-l">Ana paga</div><div class="dos-col-v ana">~15.500 €</div></div><div class="dos-col-item"><div class="dos-col-l">María paga</div><div class="dos-col-v maria">~17.200 €</div></div></div>
+        </div>
+      </div>
+
+      <div id="psub-hipoteca" class="psub">
+        <div class="hip-hero">
+          <div class="eyebrow" style="color:var(--mist);">CaixaBank · Préstamo hipotecario</div>
+          <div class="hip-grid">
+            <div class="hip-card"><div class="hip-card-l">Capital</div><div class="hip-card-v">170.000 €</div></div>
+            <div class="hip-card"><div class="hip-card-l">Plazo</div><div class="hip-card-v">20 años</div></div>
+            <div class="hip-card"><div class="hip-card-l">Tipo fijo</div><div class="hip-card-v gold">2,15%</div></div>
+            <div class="hip-card"><div class="hip-card-l">Total cuotas</div><div class="hip-card-v">240</div></div>
+          </div>
+        </div>
+        <div class="cuota-hero">
+          <div class="cuota-label">Cuota mensual fija</div>
+          <div class="cuota-num">862<span>,84 €</span></div>
+          <div class="cuota-sub">240 meses · desde firma escritura</div>
+        </div>
+        <span class="sec-kicker">Resumen financiero</span>
+        <div style="padding:0 22px;">
+          <div class="cv-row"><span class="cv-key">Capital prestado</span><span class="cv-val">170.000 €</span></div>
+          <div class="cv-row"><span class="cv-key">Total intereses 20 años</span><span class="cv-val amber">~36.882 €</span></div>
+          <div class="cv-row"><span class="cv-key">Total pagado</span><span class="cv-val">~206.882 €</span></div>
+          <div class="cv-row"><span class="cv-key">Coste real del dinero</span><span class="cv-val amber">21,7%</span></div>
+        </div>
+        <span class="sec-kicker" style="margin-top:4px;">Estado</span>
+        <div style="padding:14px 22px;">
+          <div style="font-size:11px;color:var(--stone);margin-bottom:8px;">Préstamo autorizado · Tasación pendiente · Escritura 18/07/2026</div>
+          <div style="height:4px;background:var(--border);border-radius:2px;"><div style="height:4px;width:0%;background:var(--sage);border-radius:2px;"></div></div>
+          <div style="display:flex;justify-content:space-between;margin-top:5px;font-size:9px;color:var(--mist);">
+            <span>0 € amortizado</span><span>170.000 € pendiente</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="psub-amortizacion" class="psub">
+        <div style="padding:18px 22px;background:linear-gradient(135deg,#2E8B72 0%,#3AA88C 100%);">
+          <div class="eyebrow" style="color:var(--mist);">Tabla de amortización · 240 cuotas</div>
+          <div style="font-family:'Playfair Display',serif;font-size:20px;color:var(--white);margin-top:6px;">170.000 € · 2,15% · 20 años</div>
+          <div style="font-size:10px;color:var(--mist);margin-top:4px;">Cuota fija: 862,84 € / mes</div>
+        </div>
+        <div class="amort-header">
+          <div class="amh">Mes</div>
+          <div class="amh right">Cuota</div>
+          <div class="amh right">Interés</div>
+          <div class="amh right">Capital</div>
+          <div class="amh right">Pendiente</div>
+        </div>
+        <div id="amort-body"></div>
+        <div style="padding:14px 22px;text-align:center;">
+          <button class="btn-ink" id="btn-more" onclick="loadMore()">Ver más meses ↓</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="fab" onclick="openModal()">+</button>
+</div>
+
+<!-- Modal añadir pago -->
+<div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <div class="modal-title">Registrar pago</div>
+    <div class="field"><label>Concepto</label><input type="text" id="f-concepto" placeholder="Ej: Notaría escritura"></div>
+    <div class="field"><label>Importe (€)</label><input type="number" id="f-importe" placeholder="0"></div>
+    <div class="field"><label>Quién paga</label>
+      <select id="f-quien"><option value="Ana">Ana</option><option value="María">María</option><option value="Ambas">Ambas (50/50)</option><option value="Cuenta común">Cuenta común</option></select>
+    </div>
+    <div class="field"><label>Categoría</label>
+      <select id="f-categoria"><option>Compra</option><option>Reforma</option><option>Impuestos</option><option>Notaría</option><option>Registro</option><option>Otros</option></select>
+    </div>
+    <div class="field"><label>Estado</label>
+      <select id="f-estado"><option value="Pagado">Pagado</option><option value="Pendiente">Pendiente</option></select>
+    </div>
+    <div class="field"><label>Nota (opcional)</label><input type="text" id="f-nota" placeholder=""></div>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="btn-save" onclick="guardarPago()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── AMORTIZACIÓN ──
+const capital=170000,tasa=2.15/100/12,meses=240;
+const cuota=capital*tasa*Math.pow(1+tasa,meses)/(Math.pow(1+tasa,meses)-1);
+let pendiente=capital,amortRows=[];
+for(let i=1;i<=meses;i++){const int=pendiente*tasa;const cap=cuota-int;pendiente-=cap;amortRows.push({i,cuota,int,cap,pend:Math.max(0,pendiente)});}
+let shown=12;
+function fmt(n){return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function renderAmort(){
+  const body=document.getElementById('amort-body');
+  body.innerHTML=amortRows.slice(0,shown).map(r=>`<div class="amort-row"><div class="am-n">${r.i}</div><div class="am-v">${fmt(r.cuota)}</div><div class="am-v interest">${fmt(r.int)}</div><div class="am-v capital">${fmt(r.cap)}</div><div class="am-v pending">${fmt(r.pend)}</div></div>`).join('');
+  document.getElementById('btn-more').style.display=shown>=meses?'none':'block';
+}
+function loadMore(){shown=Math.min(shown+24,meses);renderAmort();}
+renderAmort();
+
+// ── FECHA HOY ──
+const dias=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+const meses_=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const hoy=new Date();
+document.getElementById('fecha-hoy').textContent=dias[hoy.getDay()]+', '+hoy.getDate()+' de '+meses_[hoy.getMonth()]+' de '+hoy.getFullYear();
+const escritura=new Date('2026-07-18');
+const diffD=Math.ceil((escritura-hoy)/(1000*60*60*24));
+document.getElementById('dias-escritura').textContent=diffD>0?diffD:'0';
+
+// ── PAGOS ──
+let pagos=JSON.parse(localStorage.getItem('clv_pagos')||'[]');
+if(pagos.length===0){
+  pagos=[{id:1,concepto:'Arras compraventa',importe:31000,quien:'Ana',categoria:'Compra',estado:'Pagado',nota:'Ana pagó la totalidad. María debe restituir 15.500€'}];
+  savePagos();
+}
+function savePagos(){localStorage.setItem('clv_pagos',JSON.stringify(pagos));}
+function renderPagos(){
+  const body=document.getElementById('tabla-pagos-body');
+  let totalAna=0,totalMaria=0;
+  body.innerHTML=pagos.map(p=>{
+    let vAna='—',vMaria='—';
+    const imp=Number(p.importe);
+    if(p.quien==='Ana'){vAna=fmt(imp)+'€';if(p.estado==='Pagado')totalAna+=imp;}
+    else if(p.quien==='María'){vMaria=fmt(imp)+'€';if(p.estado==='Pagado')totalMaria+=imp;}
+    else if(p.quien==='Ambas'||p.quien==='Cuenta común'){const m=imp/2;vAna=fmt(m)+'€';vMaria=fmt(m)+'€';if(p.estado==='Pagado'){totalAna+=m;totalMaria+=m;}}
+    const stClass=p.estado==='Pagado'?'ts-ok':p.estado==='Pendiente'?'ts-pend':'ts-amber';
+    return`<div class="tabla-row"><div><div class="tr-concept">${p.concepto}</div>${p.nota?`<div class="tr-note">${p.nota}</div>`:''}</div><div class="tr-val ana">${vAna}</div><div class="tr-val maria">${vMaria}</div><div><span class="tr-status ${stClass}">${p.estado}</span></div></div>`;
+  }).join('');
+  document.getElementById('tabla-total-row').innerHTML=`<div class="tabla-total"><div class="tt-label">Total pagado</div><div class="tt-val ana">${fmt(totalAna)} €</div><div class="tt-val maria">${fmt(totalMaria)} €</div><div></div></div>`;
+  document.getElementById('total-ana').textContent=fmt(totalAna)+' €';
+  document.getElementById('total-maria').textContent=fmt(totalMaria)+' €';
+}
+renderPagos();
+
+function openModal(){document.getElementById('modal-overlay').classList.add('open');}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('open');}
+function guardarPago(){
+  const concepto=document.getElementById('f-concepto').value.trim();
+  const importe=parseFloat(document.getElementById('f-importe').value);
+  if(!concepto||isNaN(importe)||importe<=0){alert('Introduce concepto e importe válido');return;}
+  pagos.push({id:Date.now(),concepto,importe,quien:document.getElementById('f-quien').value,categoria:document.getElementById('f-categoria').value,estado:document.getElementById('f-estado').value,nota:document.getElementById('f-nota').value});
+  savePagos();renderPagos();closeModal();
+  document.getElementById('f-concepto').value='';document.getElementById('f-importe').value='';document.getElementById('f-nota').value='';
+}
+
+// ── NAVEGACIÓN ──
+function showTab(name,btn){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+function showPsub(name,btn){
+  document.querySelectorAll('.psub').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.ptab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('psub-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── PWA: instalar ──
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();deferredPrompt=e;
+  document.getElementById('install-banner').classList.add('show');
+});
+document.getElementById('install-btn').addEventListener('click',async()=>{
+  if(!deferredPrompt)return;
+  deferredPrompt.prompt();
+  const{outcome}=await deferredPrompt.userChoice;
+  deferredPrompt=null;
+  document.getElementById('install-banner').classList.remove('show');
+});
+window.addEventListener('appinstalled',()=>{document.getElementById('install-banner').classList.remove('show');});
+</script>
+
+<script>
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.getRegistrations().then(function(registrations){
+    for(let r of registrations){ r.unregister(); }
+  });
+}
+</script>
+</body>
+</html>
